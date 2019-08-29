@@ -140,4 +140,104 @@ tsdb, {NAME => 't', VERSIONS => 1, COMPRESSION => 'NONE', TTL => 'FOREVER'}
 
 hbase> alter ‘tsdb′, NAME => ‘t′, TTL => 8640000
 ```
+## 对应entity的json格式demo
+
+### put.json:
+```json
+[
+    {
+        "metric": "metric.test",
+        "tags": {
+            "tag1": "1",
+            "tag2": "2"
+        },
+        "value": -9.87654321,
+        "timestamp": 1557471500760
+    },
+    {
+        "metric": "metric.test",
+        "tags": {
+            "tag1": "1"
+        },
+        "value": 9.87654321,
+        "timestamp": 1557471500760
+    }
+]
+
+```
+
+### query.json: 相关字段说明转到具体代码实体类
+```json
+{
+    "start": "7d-ago",
+    "end": null,
+    "globalAnnotations": null,
+    "msResolution": null,
+    "noAnnotations": null,
+    "queries": [
+        {
+            "aggregator": "none",
+            "downsample": null,
+            "explicitTags": null,
+            "filters": [],
+            "metric": "InstantFlow",
+            "rate": null,
+            "rateOptions": {
+            },
+            "rollupUsage": null,
+            "tags": {}
+        },
+        {
+            "aggregator": "none",
+            "downsample": null,
+            "explicitTags": null,
+            "filters": [],
+            "metric": "COD",
+            "rate": null,
+            "rateOptions": {
+            },
+            "rollupUsage": null,
+            "tags": {
+                "deviceId": "000000025",
+                "productKey": "S000000001",
+                "qualityTag": "trusted"
+            }
+        }
+    ],
+    "showQuery": null,
+    "showStats": null,
+    "showSummary": null,
+    "showTSUIDs": null,
+    "timezone": null,
+    "useCalendar": null
+}
+
+```
+
+### queryLast.json:
+```json
+[
+    {
+        "metric": "COD",
+        "tags": {
+            "deviceId": "000000001",
+            "productKey": "S000000001",
+            "qualityTag": "trusted"
+        }
+    },
+    {
+        "metric": "InstantFlow",
+        "tags": {
+            "deviceId": "000000003",
+            "productKey": "S000000001",
+            "qualityTag": "trusted"
+        }
+    }
+]
+
+```
+
+
+
+
 
