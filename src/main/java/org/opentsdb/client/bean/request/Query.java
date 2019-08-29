@@ -8,46 +8,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 查询相关的参数，和opentsdb对应
  * 详见<a>http://opentsdb.net/docs/build/html/api_http/query/index.html</a>
- *
- * @Description:
- * @Author: jinyao
- * @CreateDate: 2019/2/21 下午9:45
- * @Version: 1.0
  */
 @Data
 public class Query {
 
     /**
-     * 形如1h-ago
+     * 开始时间 形如1h-ago
      */
     private String start;
 
     /***
-     * 形如1s-ago
+     * 结束时间 形如1s-ago
      */
     private String end;
 
+    /**
+     * 是否以毫秒或秒为单位输出数据点时间戳。建议使用msResolution标志。如果未提供此标志并且在一秒内存在多个数据点，则将使用查询的聚合函数对这些数据点进行下采样。
+     */
     private Boolean msResolution;
 
+    /**
+     *  是否返回带有查询的注释。默认设置是返回请求的时间跨度的注释，但此标志可以禁用返回
+     */
     private Boolean noAnnotations;
 
+    /**
+     * 查询是否应检索所请求的时间跨度的全局注释
+     */
     private Boolean globalAnnotations;
 
+    /**
+     * 是否在结果中输出与时间序列关联的TSUID。如果将多个时间序列聚合到一个集合中，则将以排序的方式返回多个TSUID
+     */
     private Boolean showTSUIDs;
 
+    /**
+     * 是否在结果中显示查询周围的计时摘要。这将在地图中创建另一个与数据点对象不同的对象。
+     */
     private Boolean showSummary;
 
+    /**
+     * 是否在结果中显示查询的详细时序
+     */
     private Boolean showStats;
 
+    /**
+     * 是否使用查询结果返回原始子查询
+     */
     private Boolean showQuery;
 
+    /**
+     * 基于日历的下采样的可选时区。必须是TSD服务器上安装的JRE支持的有效时区数据库名称
+     */
     private String timezone;
 
+    /**
+     * 是否使用基于给定时区的日历来进行下采样间隔
+     */
     private Boolean useCalendar;
 
-    private Boolean delete;
+    /**
+     * 是否删除
+     */
+    private Boolean delete = false;
 
+    /**
+     * 包含的子查询，至少需要一个子查询
+     */
     private List<SubQuery> queries;
 
     public static class Builder {
