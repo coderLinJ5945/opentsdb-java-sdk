@@ -174,8 +174,11 @@ hbase> alter ‘tsdb′, NAME => ‘t′, TTL => 8640000
 3. globalAnnotation ：true/false
 4. msResolution ：true/false     返回的点的精度是否为毫秒级
 5. noAnnotations : 
-6. queries :                     查询点的组装参数
-6.1 
+6. queries :                     子查询点的组装参数，为一个数组，可以指定多条相互独立的子查询
+6.1 aggregator ：none            聚合函数,包含很多 todo
+6.2 downsample  ：               采样时间间隔和采样函数 todo
+6.3 explicitTags ：true/false    查询结果是否只包含 filter 中出现的 tag
+6.4 filters
 ......
 7. showQuery : true/false        查询结果中是否返回对应的子查询
 8. showStats : true/fasle        查询结果中是否携带此次查询时间的一些详细信息
