@@ -20,7 +20,7 @@
 </dependency>
 ```
 ## 创建连接
-```java
+```java-config
 OpenTSDBConfig config = OpenTSDBConfig.address(host, port)
                                               .config();
 OpenTSDBClient client = OpenTSDBClientFactory.connect(config);
@@ -28,7 +28,7 @@ OpenTSDBClient client = OpenTSDBClientFactory.connect(config);
 // 优雅关闭连接，会等待所有异步操作完成
 client.gracefulClose();
 ```
-```java
+```java-connect
 OpenTSDBConfig.address(host, port)
               // http连接池大小，默认100
               .httpConnectionPool(100)
@@ -63,7 +63,7 @@ OpenTSDBConfig.address(host, port)
 ```
 ## 查询数据 
 具体参数使用说明查看[http api](http://opentsdb.net/docs/build/html/api_http/query/index.html)
-```java
+```java-query
 Query query = Query.begin("7d-ago")
                    .sub(SubQuery.metric("metric.test")
                                 .aggregator(SubQuery.Aggregator.NONE)
@@ -92,7 +92,7 @@ client.query(query, new QueryHttpResponseCallback.QueryCallback() {
 ```
 ## 写入数据
 具体参数使用说明查看[http api](http://opentsdb.net/docs/build/html/api_http/put.html)
-```java
+```java-put
 Point point = Point.metric("point")
                   .tag("testTag", "test")
                   .value(timestamp, 1.0)
@@ -101,7 +101,7 @@ client.put(point);
 ```
 ## 查询最新数据
 具体参数使用说明查看[http api](http://opentsdb.net/docs/build/html/api_http/query/last.html)
-```java
+```java-queryLast
 LastPointQuery query = LastPointQuery.sub(LastPointSubQuery.metric("point")
                                                            .tag("testTag", "test_1")
                                                            .build())
@@ -115,7 +115,7 @@ List<LastPointQueryResult> lastPointQueryResults = client.queryLast(query);
 
 ## 删除数据
 删除数据和查询数据使用同一个Query，查询命中的数据将会被删除
-```java
+```java-delete
 Query query = Query.begin("7d-ago")
                    .sub(SubQuery.metric("metric.test")
                                 .aggregator(SubQuery.Aggregator.NONE)
@@ -125,7 +125,7 @@ client.delete(query);
 ```
 ## 查询metrics、tagk、tagv
 具体参数使用说明查看[http api](http://opentsdb.net/docs/build/html/api_http/suggest.html)
-```java
+```java-suggest
 SuggestQuery query = SuggestQuery.type(SuggestQuery.Type.METRICS)
                                  .build();
 List<String> suggests = client.querySuggest(query);
