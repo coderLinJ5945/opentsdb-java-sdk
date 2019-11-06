@@ -167,6 +167,22 @@ hbase> alter ‘tsdb′, NAME => ‘t′, TTL => 8640000
 ```
 
 ### query.json: 相关字段说明转到具体代码实体类
+**字段说明：todo**
+
+1. start ：1456123705            查询的起始时间,时间戳
+2. end ： 1456123705             查询的结束时间,时间戳
+3. globalAnnotation ：true/false
+4. msResolution ：true/false     返回的点的精度是否为毫秒级
+5. noAnnotations : 
+6. queries :                     查询点的组装参数
+6.1 
+......
+7. showQuery : true/false        查询结果中是否返回对应的子查询
+8. showStats : true/fasle        查询结果中是否携带此次查询时间的一些详细信息
+9. showSummary : true/false      查询结果中是否携带此次查询时间的一些摘要信息
+10. showTSUIDs : true/false      查询结果中是否携带 tsuid
+11. timezone
+12. useCalendar
 ```json
 {
     "start": "7d-ago",
